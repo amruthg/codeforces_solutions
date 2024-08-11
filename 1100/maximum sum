@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main(){
+
+    int t;
+    cin>>t;
+
+    for(int i=0;i<t;i++){
+
+        int n,k;
+        cin>>n>>k;
+
+        vector<int> input(n+1);
+        for(int j=1;j<=n;j++){
+            cin>>input[j];
+        }
+        sort(input.begin(),input.end());
+        vector<long long> pref(n+1);
+        for(int j=1;j<=n;j++){
+            pref[j]=pref[j-1]+input[j];
+        }
+        long long maxi=0;
+        for(int j=0;j<=k;j++){
+            maxi=max(maxi,pref[n-j]-pref[2*(k-j)]);
+        }
+
+        cout<<maxi<<endl;
+    }
+
+    return 0;
+}
+
