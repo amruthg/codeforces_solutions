@@ -1,0 +1,52 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int t;
+    cin >> t;
+
+    while (t--) {
+        int n;
+        long long c;
+        cin >> n >> c;
+
+        vector<int> s(n);
+        for (int i = 0; i < n; i++) {
+            cin >> s[i];
+        }
+
+        int low = 0, high = 1e9;
+        int ans = -1;
+
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            long long sum = 0;
+            bool overflow = false;
+
+            for (int i = 0; i < n; i++) {
+                long long term = s[i] + 2 * mid;
+                if (term > LLONG_MAX / term) {
+                    // Prevent overflow
+                    overflow = true;
+                    break;
+                }
+                sum += term * term;
+
+                if (sum > c) {
+                    break;
+                }
+            }
+
+            if (overflow || sum > c) {
+                high = mid - 1;
+            } else {
+                ans = mid;
+                low = mid + 1;
+            }
+        }
+
+        cout << ans << endl;
+    }
+
+    return 0;
+}
