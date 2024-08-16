@@ -1,0 +1,45 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main(){
+
+    int t;
+    cin>>t;
+
+    while(t--){
+        
+        int n,x;
+        cin>>n>>x;
+
+        vector<long long> h(n);
+        for(int i=0;i<n;i++){
+            cin>>h[i];
+        }
+
+        long long l=0,r=2e9;
+        long long ans=0;
+        while(l<=r){
+
+            long long mid = l+(r-l)/2;
+            long long sum=0;
+            for(auto i:h){
+                if(i<=mid){
+                    sum+=(mid-i);
+                }
+            }
+            if(sum>x){
+                r=mid-1;
+            }
+            else{
+                ans=mid;
+                l=mid+1;
+            }
+        }
+        cout<<ans<<endl;
+    }
+
+    return 0;
+}
+
+//sigterm error solution : use long long
+//edge case detected where column length greater than intial r value;
