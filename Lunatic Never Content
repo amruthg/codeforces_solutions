@@ -1,0 +1,35 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main(){
+
+    int t;
+    cin>>t;
+
+    while(t--){
+
+        int n;
+        cin>>n;
+        vector<int> a(n);
+        for(int i=0;i<n;i++){
+            cin>>a[i];
+        }
+
+        if(n==1){
+            cout<<0<<endl;
+            continue;
+        }
+        //now find the absolute diff bw palindromic terms a
+        //and then gcd of those differences
+
+        int ans=abs(a[0]-a[n-1]);
+        for(int i=0;i<n/2;i++){
+            ans=__gcd(ans,abs(a[i]-a[n-i-1]));
+        }
+
+        cout<<ans<<endl;
+    }
+
+    return 0;
+}
+
