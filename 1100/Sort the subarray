@@ -1,0 +1,57 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    
+    int t;
+    cin>>t;
+
+    while(t--){
+
+        int n;
+        cin>>n;
+
+        vector<int> sub1(n),sub2(n);
+        for(int i=0;i<n;i++){
+            cin>>sub1[i];
+        }
+        for(int i=0;i<n;i++){
+            cin>>sub2[i];
+        }
+
+        int l=0,r=n-1;
+        while(l<r){
+            if(sub1[l]!=sub2[l]){
+                break;
+            }
+            l++;
+        }
+        while(l<r){
+            if(sub1[r]!=sub2[r]){
+                break;
+            }
+            r--;
+        }       
+
+        while(l>0){
+            if(sub2[l-1]<=sub2[l]){
+                l--;
+            }
+            else{
+                break;
+            }
+        }  
+        while(r<n-1){
+            if(sub2[r]<=sub2[r+1]){
+                r++;
+            }
+            else{
+                break;
+            }
+        } 
+
+        cout<<l+1<<" "<<r+1<<endl;
+    }
+
+    return 0;
+}
