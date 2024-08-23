@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    
+    int t;
+    cin>>t;
+
+    while(t--){
+
+        int n;
+        cin>>n;
+        int indn=0,ind2=0,ind1=0;
+        vector<int> arr(n);
+        for(int i=0;i<n;i++){
+            cin>>arr[i];
+            if(arr[i]==n){
+                indn=i;
+            }
+            else if(arr[i]==2){
+                ind2=i;
+            }
+            else if(arr[i]==1){
+                ind1=i;
+            }
+        }
+        int temp=0;
+        if(abs(ind1 -indn)>abs(ind1-ind2)){
+            temp = indn;
+            indn=ind2;
+            ind2 = temp;
+
+            cout<<ind2+1<<" "<<indn+1<<endl;
+        }
+
+        else{
+            cout<<ind1+1<<" "<<ind1+1<<endl;
+        }
+        
+    }
+
+    return 0;
+}
